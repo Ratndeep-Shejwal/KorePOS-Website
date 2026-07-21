@@ -31,10 +31,13 @@ export default function Header() {
           }
         });
       },
-      { rootMargin: "-1px 0px -95% 0px", threshold: 0 },
+      // This creates a "tripwire" line at 10% from the top of the viewport.
+      // When scrolling up or down, the section currently crossing this line becomes active.
+      { rootMargin: "-10% 0px -90% 0px", threshold: 0 }
     );
 
     sections.forEach((section) => observer.observe(section));
+    
     return () => observer.disconnect();
   }, []);
 
