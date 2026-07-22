@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import Button from './Button'
 
 // ── CONTENT CONFIG ──────────────────────────────
@@ -19,6 +20,7 @@ export default function Hero() {
     <section
       data-theme="dark"
       className="relative w-full h-screen flex items-center overflow-hidden"
+      // The background remains completely static here
       style={{
         backgroundImage: `url(${content.bgImage})`,
         backgroundSize: 'cover',
@@ -26,30 +28,71 @@ export default function Hero() {
       }}
     >
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        
+        {/* Left Content Area */}
         <div>
-          <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-8"
+          >
             <span className="w-2 h-2 rounded-full bg-coral" />
             <span className="text-sm font-body font-medium text-paper">{content.badge}</span>
-          </div>
+          </motion.div>
 
-          <h1 className="font-display font-extrabold text-5xl md:text-6xl leading-[1.05] tracking-tight text-paper mb-2">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+            className="font-display font-extrabold text-5xl md:text-6xl leading-[1.05] tracking-tight text-paper mb-2"
+          >
             {content.headingLine1}
-          </h1>
-          <h1 className="font-display font-extrabold text-5xl md:text-6xl leading-[1.05] tracking-tight text-coral mb-6">
+          </motion.h1>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            className="font-display font-extrabold text-5xl md:text-6xl leading-[1.05] tracking-tight text-coral mb-6"
+          >
             {content.headingLine2}
-          </h1>
+          </motion.h1>
 
-          <p className="font-body text-lg text-paper/70 max-w-md mb-10">{content.subtext}</p>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+            className="font-body text-lg text-paper/70 max-w-md mb-10"
+          >
+            {content.subtext}
+          </motion.p>
 
-          <div className="flex items-center gap-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+            className="flex items-center gap-4"
+          >
             <Button variant="primary">{content.primaryCta}</Button>
             <Button variant="secondary">{content.secondaryCta}</Button>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="hidden md:flex justify-center items-center">
-          <img src={content.graphicImage} alt="Product dashboard preview" className="w-full max-w-lg object-contain" />
-        </div>
+        {/* Right Graphic Area */}
+        <motion.div 
+          initial={{ opacity: 0, x: 40, scale: 0.95 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+          className="hidden md:flex justify-center items-center"
+        >
+          <img 
+            src={content.graphicImage} 
+            alt="Product dashboard preview" 
+            className="w-full max-w-lg object-contain" 
+          />
+        </motion.div>
+        
       </div>
     </section>
   )

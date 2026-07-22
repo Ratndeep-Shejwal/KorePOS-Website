@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 import Button from "./Button";
 
 // ── CONTENT CONFIG ──────────────────────────────
@@ -205,8 +206,15 @@ export default function BusinessTypes() {
       className="relative bg-paper py-24 overflow-hidden font-body"
     >
       <div className="max-w-[1400px] mx-auto pl-6 md:pl-12 grid grid-cols-1 lg:grid-cols-[1fr_1.8fr] gap-12 items-center relative z-10">
-        {/* Left: Text & CTA */}
-        <div className="max-w-md pr-6 lg:pr-0">
+        
+        {/* Left: Text & CTA - Animated Slide Up */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="max-w-md pr-6 lg:pr-0"
+        >
           <h2 className="font-display font-extrabold text-5xl md:text-[3.5rem] leading-[1.05] tracking-tight text-ink mb-2">
             {content.headingLine1}
           </h2>
@@ -218,15 +226,21 @@ export default function BusinessTypes() {
           </p>
 
           <Button variant="primary">{content.cta}</Button>
-        </div>
+        </motion.div>
 
-        {/* Right: Carousel Area */}
-        <div className="relative h-[440px] flex items-center w-full">
+        {/* Right: Carousel Area - Animated Slide in from Right */}
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          className="relative h-[440px] flex items-center w-full"
+        >
           <div className="absolute inset-y-0 left-[15%] -right-[100vw] bg-ink rounded-l-[40px] z-0" />
 
           <div className="absolute inset-y-0 left-0 -right-[100vw] overflow-hidden flex items-center">
             <div
-              className="flex gap-6 w-max relative z-10"
+              className="flex gap-6 w-max relative z-10 will-change-transform"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
               style={{
@@ -263,7 +277,7 @@ export default function BusinessTypes() {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
