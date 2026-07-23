@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
-import Button from "./Button";
+import Button from "../Button";
 
 // ── CONTENT CONFIG ──────────────────────────────
 const content = {

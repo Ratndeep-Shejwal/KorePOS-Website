@@ -1,33 +1,29 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ReactLenis } from 'lenis/react'
 import 'lenis/dist/lenis.css'
-import Header from './components/Header'
-import Hero from './components/Hero'
 import './App.css'
-import PaymentMethods from './components/payment-methods'
-import BusinessTypes from './components/business-types'
-import Features from './components/features'
-import WhyChooseUs from './components/why-korepos'
-import TestimonialsStats from './components/testimonial'
-import CTASection from './components/cta'
-import Pricing from './components/pricing'
-import FAQ from './components/faq'
+
+// ── GLOBAL COMPONENTS ─────────────────────────────
+import Header from './components/Header'
 import Footer from './components/footer'
+
+// ── PAGES ─────────────────────────────────────────
+import Home from './pages/Home'
+import KoreposLite from './pages/korepos-lite'
+import KoreposPro from './pages/korepos-pro'
 
 function App() {
   return (
-    // The root prop applies the smooth scroll globally to the window
     <ReactLenis root options={{ lerp: 0.1, duration: 1.5 }}>
-      <Header />
-      <Hero />
-      <PaymentMethods />
-      <BusinessTypes />
-      <Features />
-      <WhyChooseUs />
-      <TestimonialsStats />
-      <CTASection />
-      <Pricing />
-      <FAQ />
-      <Footer />
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="korepos-lite" element={<KoreposLite />}/>
+          <Route path="korepos-pro" element={<KoreposPro />}/>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </ReactLenis>
   )
 }

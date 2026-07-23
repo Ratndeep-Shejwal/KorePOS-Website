@@ -1,6 +1,5 @@
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
-// ── CUSTOM SOCIAL ICONS (Zero Dependencies) ─────────────────
 const FacebookIcon = ({ size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
@@ -20,11 +19,9 @@ const TwitterIcon = ({ size = 18 }) => (
     <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
   </svg>
 );
-// ────────────────────────────────────────────────────────────
 
-// ── CONTENT CONFIG ──────────────────────────────
 const content = {
-  logo: "/images/logo.png", // Replace with your actual logo path
+  logo: "/images/logo.png",
   socials: [
     { name: "Facebook", icon: FacebookIcon, href: "#" },
     { name: "Instagram", icon: InstagramIcon, href: "#" },
@@ -35,7 +32,7 @@ const content = {
       title: "Sitelinks",
       links: [
         { label: "Services", href: "#" },
-        { label: "Projects", href: "#", highlight: true }, // Highlighted in coral
+        { label: "Projects", href: "#" },
         { label: "Energy", href: "#" },
         { label: "Resources", href: "#" },
       ],
@@ -74,25 +71,17 @@ const content = {
     { label: "Merchant Terms", href: "#" },
   ],
 };
-// ─────────────────────────────────────────────────
 
 export default function Footer() {
   return (
     <footer className="bg-white font-body pt-16 pb-8 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
-        
-        {/* Top Section: Logo & Socials */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
-          {/* Logo */}
-          <div className="flex items-center">
-            {content.logo ? (
-              <img src={content.logo} alt="KorePOS Logo" className="h-10 object-contain" />
-            ) : (
-              <h2 className="font-display font-extrabold text-3xl text-ink tracking-tight">KorePOS</h2>
-            )}
+          <div className="flex items-center gap-3">
+            <img src={content.logo} alt="KorePOS Logo" className="h-10 w-10 object-contain" />
+            <span className="font-display font-extrabold text-3xl text-ink tracking-tight">KorePOS</span>
           </div>
 
-          {/* Social Icons */}
           <div className="flex items-center gap-3">
             {content.socials.map((social) => (
               <a
@@ -107,13 +96,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="w-full h-px bg-ink/10 mb-12" />
 
-        {/* Main Links Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
-          
-          {/* 3 Link Columns */}
           {content.columns.map((col) => (
             <div key={col.title} className="lg:col-span-2">
               <h4 className="font-bold text-ink text-base mb-6">{col.title}</h4>
@@ -123,8 +108,8 @@ export default function Footer() {
                     <a
                       href={link.href}
                       className={`text-sm transition-colors ${
-                        link.highlight 
-                          ? "text-coral font-semibold hover:text-[#e64a27]" 
+                        link.highlight
+                          ? "text-coral font-semibold hover:text-[#e64a27]"
                           : "text-ink/60 hover:text-coral"
                       }`}
                     >
@@ -136,7 +121,6 @@ export default function Footer() {
             </div>
           ))}
 
-          {/* Contact Column (Takes up remaining space) */}
           <div className="lg:col-span-5 lg:col-start-8">
             <ul className="flex flex-col gap-6">
               {content.contact.map((item, idx) => (
@@ -149,38 +133,19 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="w-full h-px bg-ink/10 mb-8" />
 
-        {/* Bottom Text */}
         <p className="text-sm text-ink/50 leading-relaxed mb-8 max-w-5xl">
           {content.bottomText}
         </p>
 
-        {/* Divider */}
         <div className="w-full h-px bg-ink/10 mb-8" />
 
-        {/* Copyright & Legal Links */}
         <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-          
-          {/* Copyright & Developer Link */}
           <div className="text-sm text-ink/60 text-center lg:text-left">
             <span>{content.copyright}</span>
-            <span className="mx-2 hidden lg:inline">|</span>
-            <span className="block lg:inline mt-2 lg:mt-0">
-              Designed & developed by{" "}
-              <a 
-                href="https://nuopod.com/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-coral font-medium hover:underline transition-all"
-              >
-                Nuopod Tech
-              </a>.
-            </span>
           </div>
-          
-          {/* Legal Links */}
+
           <ul className="flex flex-wrap justify-center items-center gap-x-6 gap-y-3">
             {content.legalLinks.map((link) => (
               <li key={link.label}>
@@ -194,7 +159,6 @@ export default function Footer() {
             ))}
           </ul>
         </div>
-
       </div>
     </footer>
   );
