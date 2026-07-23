@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion'
 import Button from './Button'
 
-// ── CONTENT CONFIG ──────────────────────────────
 const content = {
-  bgImage: 'images/hero-bg.png',
   graphicImage: 'images/hero-img.png',
   badge: 'Pay as Little as 0.39% per Transaction*',
   headingLine1: 'Run your entire business',
@@ -13,20 +11,21 @@ const content = {
   primaryCta: 'Book Demo',
   secondaryCta: 'Start Free',
 }
-// ─────────────────────────────────────────────────
 
 export default function Hero() {
   return (
     <section
       data-theme="dark"
-      className="relative w-full h-screen flex items-center overflow-hidden"
-      // The background remains completely static here
-      style={{
-        backgroundImage: `url(${content.bgImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      className="relative w-full h-screen flex items-center overflow-hidden bg-[#111111]"
     >
+      {/* ── Ambient Glow Background Effects ── */}
+      {/* Top Right Coral Glow */}
+      <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-coral/25 rounded-full blur-[140px] pointer-events-none" />
+      
+      {/* Bottom Left Green Glow */}
+      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-[#1a4736]/40 rounded-full blur-[140px] pointer-events-none" />
+
+      {/* Main Content Container */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         
         {/* Left Content Area */}
