@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useTransform, animate, useInView, AnimatePresence } from "framer-motion";
 import { Star } from "lucide-react";
 
-// ── CONTENT CONFIG ──────────────────────────────
 const content = {
   overline: "The Outcome",
   heading: "The Numbers Behind The Calm",
@@ -32,9 +31,7 @@ const content = {
     },
   ],
 };
-// ─────────────────────────────────────────────────
 
-// --- Animated Counter Component ---
 function AnimatedNumber({ value, suffix }) {
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
@@ -63,12 +60,11 @@ export default function TestimonialsStats() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-slide logic
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % content.testimonials.length);
-    }, 5000); // Changes every 5 seconds
+    }, 5000);
     return () => clearInterval(interval);
   }, [isPaused]);
 
@@ -78,13 +74,11 @@ export default function TestimonialsStats() {
         data-theme="dark"
         className="relative bg-[#111111] text-paper rounded-[2.5rem] md:rounded-[3rem] py-16 md:py-24 px-8 md:px-16 lg:px-24 mx-auto max-w-[1400px] font-body shadow-2xl overflow-hidden"
       >
-        {/* Ambient Gradients matching the design */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-coral/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-forest/20 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
-          {/* Left: Stats & Headings */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -118,54 +112,48 @@ export default function TestimonialsStats() {
             </div>
           </motion.div>
 
-          {/* Right: Testimonial Slider */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-            className="relative"
+            className="relative flex h-full"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            <div className="bg-white/5 border border-white/10 rounded-[2rem] p-8 md:p-12 backdrop-blur-sm min-h-[380px] flex flex-col justify-center">
+            <div className="bg-white/5 border border-white/10 rounded-[2rem] p-8 md:p-12 pb-16 md:pb-20 backdrop-blur-sm w-full min-h-[380px] flex flex-col">
               
-              {/* Stars */}
               <div className="flex gap-1.5 mb-8">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} size={20} className="fill-[#F5A623] text-[#F5A623]" />
                 ))}
               </div>
 
-              {/* Slider Content */}
-              <div className="relative flex-1">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentIndex}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="absolute inset-0 flex flex-col justify-between"
-                  >
-                    <p className="text-paper/90 text-lg md:text-xl leading-relaxed font-medium">
-                      {content.testimonials[currentIndex].quote}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="flex-1 flex flex-col justify-between"
+                >
+                  <p className="text-paper/90 text-lg md:text-xl leading-relaxed font-medium">
+                    {content.testimonials[currentIndex].quote}
+                  </p>
+                  
+                  <div className="mt-8">
+                    <p className="text-white font-bold text-base">
+                      {content.testimonials[currentIndex].author}
                     </p>
-                    
-                    <div className="mt-8">
-                      <p className="text-white font-bold text-base">
-                        {content.testimonials[currentIndex].author}
-                      </p>
-                      <p className="text-paper/50 text-sm mt-1">
-                        {content.testimonials[currentIndex].role}
-                      </p>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+                    <p className="text-paper/50 text-sm mt-1">
+                      {content.testimonials[currentIndex].role}
+                    </p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
 
-              {/* Optional: Slide Indicators (Dots) */}
-              <div className="absolute bottom-8 right-12 flex gap-2">
+              <div className="absolute bottom-8 right-8 md:right-12 flex gap-2">
                 {content.testimonials.map((_, i) => (
                   <button
                     key={i}
