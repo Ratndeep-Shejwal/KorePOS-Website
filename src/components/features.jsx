@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 
-// ── CONTENT CONFIG ──────────────────────────────
 const content = {
   overline: "FEATURES",
   heading: "See how KorePOS runs your day",
@@ -63,7 +62,6 @@ const content = {
     },
   ],
 };
-// ─────────────────────────────────────────────────
 
 export default function Features() {
   return (
@@ -74,7 +72,6 @@ export default function Features() {
       >
         <div className="max-w-[1400px] mx-auto relative">
           
-          {/* Animated Header Section */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +87,6 @@ export default function Features() {
             </h2>
           </motion.div>
 
-          {/* Sticky Features List */}
           <div className="relative">
             {content.features.map((feature, index) => {
               const isImageLeft = index % 2 === 0;
@@ -99,21 +95,19 @@ export default function Features() {
                 <div 
                   key={feature.id} 
                   className={`
-                    sticky top-12 md:top-24 w-full bg-ink min-h-[85vh] md:min-h-[75vh] flex items-center py-12 md:py-16
+                    relative md:sticky md:top-24 w-full bg-ink flex items-center py-12 md:py-16 md:min-h-[75vh]
                     ${index > 0 ? "border-t border-paper/5" : ""} 
                   `}
                   style={{ zIndex: index + 10 }}
                 >
-                  {/* Animated Inner Content */}
                   <motion.div 
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-150px" }} // Triggers slightly later for dramatic effect as they scroll up
+                    viewport={{ once: true, margin: "-150px" }} 
                     transition={{ duration: 0.7, ease: "easeOut" }}
                     className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center w-full"
                   >
                     
-                    {/* Image Column */}
                     <div 
                       className={`w-full rounded-3xl md:rounded-[2.5rem] overflow-hidden aspect-[4/3] lg:aspect-square relative
                         ${isImageLeft ? "order-1 lg:order-1" : "order-1 lg:order-2"}`}
@@ -127,7 +121,6 @@ export default function Features() {
                       />
                     </div>
 
-                    {/* Text Content Column */}
                     <div 
                       className={`flex flex-col justify-center 
                         ${isImageLeft ? "order-2 lg:order-2" : "order-2 lg:order-1"}`}
@@ -148,7 +141,6 @@ export default function Features() {
                         {feature.desc2}
                       </p>
                       
-                      {/* Tags / Pills */}
                       <div className="flex flex-wrap gap-3">
                         {feature.tags.map((tag) => (
                           <span 
