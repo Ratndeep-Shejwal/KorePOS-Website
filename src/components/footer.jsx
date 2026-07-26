@@ -27,33 +27,40 @@ const content = {
     { name: "Instagram", icon: InstagramIcon, href: "#" },
     { name: "Twitter", icon: TwitterIcon, href: "#" },
   ],
-  columns: [
-    {
-      title: "Sitelinks",
-      links: [
-        { label: "Services", href: "#" },
-        { label: "Projects", href: "#" },
-        { label: "Energy", href: "#" },
-        { label: "Resources", href: "#" },
-      ],
-    },
-    {
-      title: "Company",
-      links: [
-        { label: "About KorePOS", href: "#" },
-        { label: "Careers", href: "#" },
-        { label: "Partners", href: "#" },
-        { label: "Accessibility", href: "#" },
-      ],
-    },
-    {
-      title: "Help",
-      links: [
-        { label: "FAQs", href: "#" },
-        { label: "Order & Delivery", href: "#" },
-        { label: "Returns Policy", href: "#" },
-      ],
-    },
+  
+  // Organized into distinct sections for the new grid layout
+  companyLinks: [
+    { label: "About Us", href: "#about" },
+    { label: "Pricing", href: "#pricing" },
+    { label: "Contact Us", href: "#contact" },
+    { label: "Book a Demo", href: "#book-demo" },
+  ],
+  productLinks: [
+    { label: "KorePOS Pro", href: "/korepos-pro" },
+    { label: "KorePOS Lite", href: "/korepos-lite" },
+  ],
+  businessTypeLinks: [
+    { label: "Activities & Escapes", href: "/business-types/activity" },
+    { label: "Bakeries & Sweets", href: "/business-types/bakeries-and-sweet-shops" },
+    { label: "Beauty & Barbers", href: "/business-types/beauty-salons-and-barbers" },
+    { label: "Cafés & Coffee", href: "/business-types/cafes-and-coffee-shops" },
+    { label: "Charity & Donations", href: "/business-types/charity-and-donations" },
+    { label: "Cloud Kitchens", href: "/business-types/cloud-kitchens" },
+    { label: "Event Organizers", href: "/business-types/event-organizers" },
+    { label: "Festivals & Markets", href: "/business-types/festivals-and-markets" },
+    { label: "Food Trucks", href: "/business-types/food-trucks" },
+    { label: "Gardens & Nurseries", href: "/business-types/gardens-and-nurseries" },
+    { label: "Grocery Stores", href: "/business-types/grocery-and-convenience-stores" },
+    { label: "Gyms & Fitness", href: "/business-types/gyms-and-fitness-centers" },
+    { label: "Hotels & Resorts", href: "/business-types/hotels-and-resorts" },
+    { label: "Juice Bars", href: "/business-types/juice-bars-and-smoothie-shops" },
+    { label: "Mobile Services", href: "/business-types/mobile-service-businesses" },
+    { label: "Restaurants", href: "/business-types/restaurants" },
+    { label: "Retail Stores", href: "/business-types/retail-stores" },
+    { label: "Stalls & Pop-ups", href: "/business-types/stalls-and-pop-up-shops" },
+    { label: "Tour Operators", href: "/business-types/tour-operators" },
+    { label: "Workshops & Classes", href: "/business-types/workshops-and-classes" },
+    { label: "Others / Custom", href: "/business-types/others" },
   ],
   contact: [
     { icon: Phone, text: "(704) 555-0127" },
@@ -62,7 +69,7 @@ const content = {
     { icon: Clock, text: "Monday - Saturday\n9AM - 10PM" },
   ],
   bottomText:
-    "Lorem ipsum dolor sit amet consectetur. Lectus massa sodales at sit aliquet velit ipsum. Elementum turpis enim consequat pharetra iaculis. Enim odio id tellus fames neque. Commodo ac imperdiet a bibendum nulla viverra. Id amet id dui et euismod volutpat in tristique.",
+    "KorePOS is a leading provider of point-of-sale systems, empowering businesses across hospitality, retail, and services. Our all-in-one platform combines payment processing, inventory management, and customer loyalty into one seamless operating system.",
   copyright: "© 2026 KorePOS. All Rights Reserved.",
   legalLinks: [
     { label: "Privacy Policy", href: "#" },
@@ -76,6 +83,8 @@ export default function Footer() {
   return (
     <footer className="bg-white font-body pt-16 pb-8 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
+        
+        {/* Top Header Row */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
           <div className="flex items-center gap-3">
             <img src={content.logo} alt="KorePOS Logo" className="h-10 w-10 object-contain" />
@@ -98,30 +107,55 @@ export default function Footer() {
 
         <div className="w-full h-px bg-ink/10 mb-12" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
-          {content.columns.map((col) => (
-            <div key={col.title} className="lg:col-span-2">
-              <h4 className="font-bold text-ink text-base mb-6">{col.title}</h4>
-              <ul className="flex flex-col gap-4">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className={`text-sm transition-colors ${
-                        link.highlight
-                          ? "text-coral font-semibold hover:text-[#e64a27]"
-                          : "text-ink/60 hover:text-coral"
-                      }`}
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        {/* 12-Column Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-16">
+          
+          {/* Company Column (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="font-bold text-ink text-base mb-6">Company</h4>
+            <ul className="flex flex-col gap-4">
+              {content.companyLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="text-sm text-ink/60 hover:text-coral transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <div className="lg:col-span-5 lg:col-start-8">
+          {/* Products Column (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="font-bold text-ink text-base mb-6">Products</h4>
+            <ul className="flex flex-col gap-4">
+              {content.productLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="text-sm text-ink/60 hover:text-coral transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Business Types Multi-Column (5 cols) */}
+          <div className="lg:col-span-5 md:col-span-2">
+            <h4 className="font-bold text-ink text-base mb-6">Business Types</h4>
+            {/* Creates a 3-column sub-grid specifically for the 21 links */}
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-3">
+              {content.businessTypeLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="text-sm text-ink/60 hover:text-coral transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Column (3 cols) */}
+          <div className="lg:col-span-3 md:col-span-2">
+            <h4 className="font-bold text-ink text-base mb-6">Contact</h4>
             <ul className="flex flex-col gap-6">
               {content.contact.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-4 text-sm text-ink/70 leading-relaxed">
@@ -131,10 +165,12 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+
         </div>
 
         <div className="w-full h-px bg-ink/10 mb-8" />
 
+        {/* Footer Bottom */}
         <p className="text-sm text-ink/50 leading-relaxed mb-8 max-w-5xl">
           {content.bottomText}
         </p>
