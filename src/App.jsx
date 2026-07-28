@@ -12,6 +12,7 @@ import Home from './pages/Home'
 import KoreposLite from './pages/korepos-lite'
 import KoreposPro from './pages/korepos-pro'
 import BusinessTypeTemplate from './components/templates/BusinessTypeTemplate';
+import About from './pages/About'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="korepos-lite" element={<KoreposLite />}/>
           <Route path="korepos-pro" element={<KoreposPro />}/>
           <Route path="/business-types/:slug" element={<BusinessTypeTemplate />} />
+          <Route path="/about" element={<About />} />
         </Routes>
         <Footer />
       </BrowserRouter>

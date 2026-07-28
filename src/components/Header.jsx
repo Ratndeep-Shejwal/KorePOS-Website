@@ -6,20 +6,20 @@ import Button from "./Button";
 // ── CONTENT CONFIG ──────────────────────────────
 const content = {
   logo: "/images/logo.png",
-  brandName: "KorePOS", // Added brand name text configuration
+  brandName: "KorePOS", 
   navLinks: [
-    { label: "About Us", href: "#about" },
+    { label: "About Us", href: "/about" },
     { 
       label: "Products", 
-      href: "#products",
+      href: "/#products",
       subLinks: [
+        { label: "KorePOS Lite", href: "/korepos-lite" }, // Lite moved to first
         { label: "KorePOS Pro", href: "/korepos-pro" },
-        { label: "KorePOS Lite", href: "/korepos-lite" },
       ]
     },
     { 
       label: "Business Types", 
-      href: "#business-types",
+      href: "/#business-types",
       isMegaMenu: true,
       subLinks: [
         { label: "Activities & Escape Rooms", href: "/business-types/activity" },
@@ -45,10 +45,10 @@ const content = {
         { label: "Others / Custom", href: "/business-types/others" },
       ]
     },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Contact Us", href: "#contact" },
+    { label: "Pricing", href: "/#pricing" },
+    { label: "Contact Us", href: "/#contact" },
   ],
-  cta: { label: "Book Demo", href: "#book-demo" },
+  cta: { label: "Book Demo", href: "/#book-demo" },
 };
 // ─────────────────────────────────────────────────
 
@@ -214,14 +214,15 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-0 z-40 bg-ink/95 backdrop-blur-xl flex flex-col items-center pt-32 pb-12 px-6 overflow-y-auto"
+            className="fixed inset-0 z-40 bg-ink/95 backdrop-blur-xl flex flex-col pt-32 pb-12 px-8 overflow-y-auto"
           >
-            <nav className="flex flex-col items-center gap-6 w-full max-w-lg">
+            {/* Changed from items-center to items-start for left alignment */}
+            <nav className="flex flex-col items-start gap-6 w-full max-w-lg mx-auto">
               {content.navLinks.map((link, i) => {
                 const isOpen = openMobileDropdown === link.label;
 
                 return (
-                  <div key={link.label} className="w-full flex flex-col items-center">
+                  <div key={link.label} className="w-full flex flex-col items-start">
                     {link.subLinks ? (
                       <>
                         <motion.button
@@ -230,9 +231,10 @@ export default function Header() {
                           exit={{ opacity: 0, y: 10 }}
                           transition={{ duration: 0.3, delay: i * 0.05, ease: "easeOut" }}
                           onClick={() => setOpenMobileDropdown(isOpen ? null : link.label)}
-                          className={`font-display font-bold text-3xl transition-colors flex items-center gap-2 ${isOpen ? "text-coral" : "text-white"}`}
+                          // Changed to justify-between w-full to push the chevron to the right edge
+                          className={`font-display font-bold text-3xl transition-colors flex items-center justify-between w-full py-2 ${isOpen ? "text-coral" : "text-white"}`}
                         >
-                          {link.label}
+                          <span>{link.label}</span>
                           <ChevronDown 
                             size={24} 
                             className={`transition-transform duration-300 ${isOpen ? "-rotate-180" : ""}`} 
@@ -248,10 +250,11 @@ export default function Header() {
                               className="overflow-hidden w-full"
                             >
                               <div 
-                                className={`pt-6 pb-4 w-full 
+                                // Added pl-4 to nicely indent the sublinks
+                                className={`pt-4 pb-4 w-full 
                                   ${link.isMegaMenu 
-                                    ? "grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-4 px-2" 
-                                    : "flex flex-col gap-5 items-center"
+                                    ? "grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-4 pl-4" 
+                                    : "flex flex-col gap-5 items-start pl-4"
                                   }
                                 `}
                               >
@@ -260,12 +263,13 @@ export default function Header() {
                                     key={sub.label}
                                     href={sub.href}
                                     onClick={closeMobileMenu}
-                                    className={`group/link flex items-center gap-2 font-body font-medium text-white/70 hover:text-coral transition-colors
-                                      ${link.isMegaMenu ? "text-base justify-center sm:justify-start" : "text-xl justify-center"}
+                                    // Removed justify-center and set to justify-start
+                                    className={`group/link flex items-center gap-3 font-body font-medium text-white/70 hover:text-coral transition-colors w-full justify-start
+                                      ${link.isMegaMenu ? "text-base" : "text-xl"}
                                     `}
                                   >
                                     <ChevronRight 
-                                      size={16} 
+                                      size={18} 
                                       className="text-white/20 group-hover/link:text-coral transition-colors shrink-0" 
                                     />
                                     <span>{sub.label}</span>
@@ -284,7 +288,7 @@ export default function Header() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.3, delay: i * 0.05, ease: "easeOut" }}
-                        className="font-display font-bold text-3xl text-white hover:text-coral transition-colors py-2"
+                        className="font-display font-bold text-3xl text-white hover:text-coral transition-colors py-2 w-full text-left"
                       >
                         {link.label}
                       </motion.a>
@@ -298,11 +302,14 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.3, delay: content.navLinks.length * 0.05, ease: "easeOut" }}
-                className="mt-8 w-full flex justify-center"
+                // Left aligned the button wrapper and made it full width
+                className="mt-8 w-full flex justify-start"
                 onClick={closeMobileMenu}
               >
-                <div className="w-full max-w-[240px]">
-                   <Button variant="primary">{content.cta.label}</Button>
+                <div className="w-240px sm:max-w-[240px]">
+                   <Button variant="primary" className="w-full justify-center">
+                     {content.cta.label}
+                   </Button>
                 </div>
               </motion.div>
             </nav>

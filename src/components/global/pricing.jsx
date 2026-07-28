@@ -72,7 +72,7 @@ const content = {
 
 export default function Pricing() {
   return (
-    <section data-theme="light" className="bg-white py-24 md:py-32 px-6 md:px-12 lg:px-20 overflow-hidden">
+    <section id="pricing" data-theme="light" className="bg-white py-24 md:py-32 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         
         {/* Animated Header */}

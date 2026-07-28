@@ -1,39 +1,25 @@
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 
-const FacebookIcon = ({ size = 18 }) => (
+const LinkedinIcon = ({ size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-  </svg>
-);
-
-const InstagramIcon = ({ size = 18 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-  </svg>
-);
-
-const TwitterIcon = ({ size = 18 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
   </svg>
 );
 
 const content = {
   logo: "/images/logo.png",
   socials: [
-    { name: "Facebook", icon: FacebookIcon, href: "#" },
-    { name: "Instagram", icon: InstagramIcon, href: "#" },
-    { name: "Twitter", icon: TwitterIcon, href: "#" },
+    { name: "LinkedIn", icon: LinkedinIcon, href: "https://www.linkedin.com/company/korepos/" },
   ],
   
-  // Organized into distinct sections for the new grid layout
+  // Updated with exact routing paths matching the Header
   companyLinks: [
-    { label: "About Us", href: "#about" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Contact Us", href: "#contact" },
-    { label: "Book a Demo", href: "#book-demo" },
+    { label: "About Us", href: "/about" },
+    { label: "Pricing", href: "/#pricing" },
+    { label: "Contact Us", href: "/#contact" },
+    { label: "Book a Demo", href: "/#book-demo" },
   ],
   productLinks: [
     { label: "KorePOS Pro", href: "/korepos-pro" },
@@ -62,20 +48,37 @@ const content = {
     { label: "Workshops & Classes", href: "/business-types/workshops-and-classes" },
     { label: "Others / Custom", href: "/business-types/others" },
   ],
+  // Converted to arrays of links for distinct clicking actions
   contact: [
-    { icon: Phone, text: "(704) 555-0127" },
-    { icon: Mail, text: "hello@korepos.com" },
-    { icon: MapPin, text: "2118 Thornridge Cir. Syracuse, Connecticut 35624" },
-    { icon: Clock, text: "Monday - Saturday\n9AM - 10PM" },
+    { 
+      icon: Phone, 
+      links: [{ text: "+44 7429 356932", href: "tel:+447429356932" }] 
+    },
+    { 
+      icon: Mail, 
+      links: [
+        { text: "info@getsmotives.com", href: "mailto:info@getsmotives.com" },
+        { text: "support@korepos.co.uk", href: "mailto:support@korepos.co.uk" }
+      ] 
+    },
+    { 
+      icon: MapPin, 
+      links: [
+        { 
+          text: "Flat 42 Regents Court, Stonegrove, Edgware, England, HA8 8AD", 
+          href: "https://www.google.com/maps/search/?api=1&query=Flat+42+Regents+Court,+Stonegrove,+Edgware,+England,+HA8+8AD" 
+        }
+      ] 
+    },
   ],
   bottomText:
     "KorePOS is a leading provider of point-of-sale systems, empowering businesses across hospitality, retail, and services. Our all-in-one platform combines payment processing, inventory management, and customer loyalty into one seamless operating system.",
   copyright: "© 2026 KorePOS. All Rights Reserved.",
   legalLinks: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms & Conditions", href: "#" },
-    { label: "Cookie Policy", href: "#" },
-    { label: "Merchant Terms", href: "#" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms & Conditions", href: "/terms-and-conditions" },
+    { label: "Cookie Policy", href: "/cookie-policy" },
+    { label: "Merchant Terms", href: "/merchant-terms" },
   ],
 };
 
@@ -97,6 +100,8 @@ export default function Footer() {
                 key={social.name}
                 href={social.href}
                 aria-label={social.name}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center w-10 h-10 border border-ink/10 rounded bg-white text-ink/70 hover:bg-ink/5 hover:text-ink transition-colors"
               >
                 <social.icon size={18} />
@@ -160,7 +165,20 @@ export default function Footer() {
               {content.contact.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-4 text-sm text-ink/70 leading-relaxed">
                   <item.icon size={20} strokeWidth={2} className="text-ink/70 shrink-0 mt-0.5" />
-                  <span className="whitespace-pre-line">{item.text}</span>
+                  <div className="flex flex-col gap-1">
+                    {item.links.map((link, linkIdx) => (
+                      <a 
+                        key={linkIdx} 
+                        href={link.href}
+                        // Open map links in a new tab securely
+                        target={item.icon === MapPin ? "_blank" : undefined}
+                        rel={item.icon === MapPin ? "noopener noreferrer" : undefined}
+                        className="hover:text-coral transition-colors"
+                      >
+                        {link.text}
+                      </a>
+                    ))}
+                  </div>
                 </li>
               ))}
             </ul>
