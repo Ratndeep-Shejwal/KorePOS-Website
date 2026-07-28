@@ -1,8 +1,7 @@
 import { useParams } from "react-router-dom";
-
 import { businessData } from "../business-types/businessData";
 import DynamicHero from "../business-types/DynamicHero";
-import DynamicStickyFeatures from "../business-types/DynamicStickyFeatures"; // NEW
+import DynamicStickyFeatures from "../business-types/DynamicStickyFeatures"; 
 import PaymentMethods from "../global/payment-methods";
 import Pricing from "../global/pricing";
 import TestimonialsStats from "../testimonial";
@@ -11,7 +10,12 @@ import DynamicFAQ from "../business-types/DynamicFaq";
 
 export default function BusinessTypeTemplate() {
   const { slug } = useParams();
-  const data = businessData[slug];
+
+  // Normalize slug to handle slight variations (e.g., spaces to hyphens, lowercase)
+  const normalizedSlug = String(slug || "").toLowerCase().trim();
+
+  // Try to find matching data, otherwise fallback to "others"
+  const data = businessData[normalizedSlug] || businessData["others"];
 
   if (!data) {
     return (

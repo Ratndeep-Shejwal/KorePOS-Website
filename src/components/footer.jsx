@@ -14,7 +14,6 @@ const content = {
     { name: "LinkedIn", icon: LinkedinIcon, href: "https://www.linkedin.com/company/korepos/" },
   ],
   
-  // Updated with exact routing paths matching the Header
   companyLinks: [
     { label: "About Us", href: "/about" },
     { label: "Pricing", href: "/#pricing" },
@@ -24,6 +23,15 @@ const content = {
   productLinks: [
     { label: "KorePOS Pro", href: "/korepos-pro" },
     { label: "KorePOS Lite", href: "/korepos-lite" },
+  ],
+  // Added Legal Column Links mapping to your new /legal/ routes
+  legalColumnLinks: [
+    { label: "Legal Hub", href: "/legal" },
+    { label: "Privacy Policy", href: "/legal/privacy-policy" },
+    { label: "Terms & Conditions", href: "/legal/terms-and-conditions" },
+    { label: "Cookie Policy", href: "/legal/cookie-policy" },
+    { label: "Merchant Terms", href: "/legal/merchant-terms" },
+    { label: "Payment Terms", href: "/legal/payment-terms" },
   ],
   businessTypeLinks: [
     { label: "Activities & Escapes", href: "/business-types/activity" },
@@ -48,7 +56,6 @@ const content = {
     { label: "Workshops & Classes", href: "/business-types/workshops-and-classes" },
     { label: "Others / Custom", href: "/business-types/others" },
   ],
-  // Converted to arrays of links for distinct clicking actions
   contact: [
     { 
       icon: Phone, 
@@ -75,10 +82,10 @@ const content = {
     "KorePOS is a leading provider of point-of-sale systems, empowering businesses across hospitality, retail, and services. Our all-in-one platform combines payment processing, inventory management, and customer loyalty into one seamless operating system.",
   copyright: "© 2026 KorePOS. All Rights Reserved.",
   legalLinks: [
-    { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Terms & Conditions", href: "/terms-and-conditions" },
-    { label: "Cookie Policy", href: "/cookie-policy" },
-    { label: "Merchant Terms", href: "/merchant-terms" },
+    { label: "Privacy Policy", href: "/legal/privacy-policy" },
+    { label: "Terms & Conditions", href: "/legal/terms-and-conditions" },
+    { label: "Cookie Policy", href: "/legal/cookie-policy" },
+    { label: "Merchant Terms", href: "/legal/merchant-terms" },
   ],
 };
 
@@ -143,11 +150,24 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Business Types Multi-Column (5 cols) */}
-          <div className="lg:col-span-5 md:col-span-2">
+          {/* Legal Column (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="font-bold text-ink text-base mb-6">Legal</h4>
+            <ul className="flex flex-col gap-4">
+              {content.legalColumnLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="text-sm text-ink/60 hover:text-coral transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Business Types Multi-Column (3 cols) */}
+          <div className="lg:col-span-3 md:col-span-2">
             <h4 className="font-bold text-ink text-base mb-6">Business Types</h4>
-            {/* Creates a 3-column sub-grid specifically for the 21 links */}
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-3">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
               {content.businessTypeLinks.map((link) => (
                 <li key={link.label}>
                   <a href={link.href} className="text-sm text-ink/60 hover:text-coral transition-colors">
@@ -170,7 +190,6 @@ export default function Footer() {
                       <a 
                         key={linkIdx} 
                         href={link.href}
-                        // Open map links in a new tab securely
                         target={item.icon === MapPin ? "_blank" : undefined}
                         rel={item.icon === MapPin ? "noopener noreferrer" : undefined}
                         className="hover:text-coral transition-colors"
