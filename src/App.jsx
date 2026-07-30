@@ -29,6 +29,8 @@ import SecurityPolicy from './pages/legal/SecurityPolicy';
 import ServiceLevelAgreement from './pages/legal/ServiceLevelAgreement';
 import PartnerAffiliateTerms from './pages/legal/PartnerAffiliateTerms';
 import LegalHub from './pages/legal/LegalHub';
+import ContactUs from './pages/ContactUs';
+import AllBusinessTypes from './pages/AllBusinessTypes';
 
 // ── SCROLL HANDLER ────────────────────────────────
 // This handles routing to hashes (e.g. /#pricing) and scrolling to top on page change
@@ -78,8 +80,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="korepos-lite" element={<KoreposLite />}/>
           <Route path="korepos-pro" element={<KoreposPro />}/>
+          <Route path="/contact" element={<ContactUs />} />
           <Route path="/business-types/:slug" element={<BusinessTypeTemplate />} />
           <Route path="/about" element={<About />} />
+          <Route path="/business-types" element={<AllBusinessTypes />} />
 
           {/* ── LEGAL ROUTES ──────────────────────────────── */}
           <Route path="/legal">

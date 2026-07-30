@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
-import { fetchBusinessTypes } from "./utils/api";
+// Make sure this path points to exactly where you saved api.js (e.g., "../utils/api")
+import { fetchBusinessTypes } from "./utils/api"; 
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 // ── CONTENT CONFIG ──────────────────────────────
 const content = {
@@ -22,21 +24,36 @@ const content = {
       label: "Business Types",
       href: "/#business-types",
       isMegaMenu: true,
-      // subLinks will be populated dynamically from the API,
-      // with these as initial/fallback options if loading:
+      // Full robust fallback list: It will show these immediately, 
+      // and override them with live API data if the API successfully loads.
       subLinks: [
+        { label: "Activities & Escape Rooms", href: "/business-types/activity" },
+        { label: "Bakeries & Sweet Shops", href: "/business-types/bakeries-and-sweet-shops" },
+        { label: "Beauty Salons & Barbers", href: "/business-types/beauty-salons-and-barbers" },
+        { label: "Cafés & Coffee Shops", href: "/business-types/cafes-and-coffee-shops" },
+        { label: "Charity & Donations", href: "/business-types/charity-and-donations" },
+        { label: "Cloud Kitchens", href: "/business-types/cloud-kitchens" },
+        { label: "Event Organizers", href: "/business-types/event-organizers" },
+        { label: "Festivals & Markets", href: "/business-types/festivals-and-markets" },
+        { label: "Food Trucks", href: "/business-types/food-trucks" },
+        { label: "Gardens & Nurseries", href: "/business-types/gardens-and-nurseries" },
+        { label: "Grocery & Convenience", href: "/business-types/grocery-and-convenience-stores" },
+        { label: "Gyms & Fitness Centers", href: "/business-types/gyms-and-fitness-centers" },
+        { label: "Hotels & Resorts", href: "/business-types/hotels-and-resorts" },
+        { label: "Juice Bars & Smoothies", href: "/business-types/juice-bars-and-smoothie-shops" },
+        { label: "Mobile Services", href: "/business-types/mobile-service-businesses" },
         { label: "Restaurants", href: "/business-types/restaurants" },
         { label: "Retail Stores", href: "/business-types/retail-stores" },
-        {
-          label: "Cafés & Coffee Shops",
-          href: "/business-types/cafes-and-coffee-shops",
-        },
-      ],
+        { label: "Stalls & Pop-ups", href: "/business-types/stalls-and-pop-up-shops" },
+        { label: "Tour Operators", href: "/business-types/tour-operators" },
+        { label: "Workshops & Classes", href: "/business-types/workshops-and-classes" },
+        { label: "Others / Custom", href: "/business-types/others" },
+      ]
     },
     { label: "Pricing", href: "/#pricing" },
-    { label: "Contact Us", href: "/#contact" },
+    { label: "Contact Us", href: "/contact" },
   ],
-  cta: { label: "Book Demo", href: "/#book-demo" },
+  cta: { label: "Book Demo", href: "/contact" },
 };
 // ─────────────────────────────────────────────────
 
@@ -50,6 +67,8 @@ export default function Header() {
   // Fetch dynamic business types and inject them into the Business Types nav link
   useEffect(() => {
     fetchBusinessTypes().then((apiItems) => {
+      console.log("Header API Fetch Result:", apiItems); // <--- Check your browser console to see if the API worked
+
       if (apiItems && apiItems.length > 0) {
         const mappedSubLinks = apiItems.map((item) => ({
           label: item.name,
@@ -118,8 +137,7 @@ export default function Header() {
               : "bg-ink/80 border-paper/10 shadow-xl"
           }`}
         >
-          {/* Logo & Brand Name Container */}
-          <a href="/" className="flex items-center gap-2.5 ml-1 group">
+          <Link to="/" className="flex items-center gap-2.5 ml-1 group">
             <div className="w-9 h-9 flex items-center justify-center">
               <img
                 src={content.logo}
@@ -134,7 +152,7 @@ export default function Header() {
             >
               {content.brandName}
             </span>
-          </a>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-8">
             {navLinksState.map((link) => (
@@ -156,36 +174,36 @@ export default function Header() {
                     </button>
 
                     <div 
-  className={`absolute top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300
-    ${link.isMegaMenu ? "left-1/2 -translate-x-1/2 w-[750px] lg:w-[950px]" : "left-0 w-56"}
-  `}
->
-  <div 
-    className={`bg-white rounded-2xl border border-ink/10 shadow-2xl overflow-hidden max-h-[70vh] overflow-y-auto
-      ${link.isMegaMenu ? "p-6 grid grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2" : "flex flex-col"}
-    `}
-  >
-    {link.subLinks.map((sub) => (
-      <a
-        key={sub.label}
-        href={sub.href}
-        className={`group/link flex items-center gap-2 text-sm font-medium text-ink hover:text-coral hover:bg-ink/5 transition-colors
-          ${link.isMegaMenu ? "px-3 py-2.5 rounded-lg" : "px-4 py-3"}
-        `}
-      >
-        <ChevronRight 
-          size={14} 
-          className="text-ink/20 group-hover/link:text-coral transition-colors shrink-0" 
-        />
-        <span className="truncate">{sub.label}</span>
-      </a>
-    ))}
-  </div>
-</div>
+                      className={`absolute top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300
+                        ${link.isMegaMenu ? "left-1/2 -translate-x-1/2 w-[750px] lg:w-[950px]" : "left-0 w-56"}
+                      `}
+                    >
+                      <div 
+                        className={`bg-white rounded-2xl border border-ink/10 shadow-2xl overflow-hidden max-h-[70vh] overflow-y-auto
+                          ${link.isMegaMenu ? "p-6 grid grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2" : "flex flex-col"}
+                        `}
+                      >
+                        {link.subLinks.map((sub) => (
+                          <Link
+                            key={sub.label}
+                            to={sub.href}
+                            className={`group/link flex items-center gap-2 text-sm font-medium text-ink hover:text-coral hover:bg-ink/5 transition-colors
+                              ${link.isMegaMenu ? "px-3 py-2.5 rounded-lg" : "px-4 py-3"}
+                            `}
+                          >
+                            <ChevronRight 
+                              size={14} 
+                              className="text-ink/20 group-hover/link:text-coral transition-colors shrink-0" 
+                            />
+                            <span className="truncate">{sub.label}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   </>
                 ) : (
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className={`font-body font-medium text-sm transition-colors duration-300 py-2 block ${
                       isLight
                         ? "text-ink hover:text-ink/70"
@@ -193,7 +211,7 @@ export default function Header() {
                     }`}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 )}
               </div>
             ))}
@@ -201,7 +219,9 @@ export default function Header() {
 
           <div className="flex items-center gap-4">
             <div className="hidden md:block">
-              <Button variant="primary">{content.cta.label}</Button>
+              <Link to={content.cta.href}>
+                <Button variant="primary">{content.cta.label}</Button>
+              </Link>
             </div>
 
             <button
@@ -282,11 +302,11 @@ export default function Header() {
                                 `}
                               >
                                 {link.subLinks.map((sub) => (
-                                  <a
+                                  <Link
                                     key={sub.label}
-                                    href={sub.href}
+                                    to={sub.href}
                                     onClick={closeMobileMenu}
-                                    className={`group/link flex items-center gap-3 font-body font-medium text-white/70 hover:text-coral transition-colors w-full justify-start
+                                    className={`group/link flex items-center gap-3 font-body font-medium text-white/70 hover:text-coral transition-colors w-full justify-start block
                                       ${link.isMegaMenu ? "text-base" : "text-xl"}
                                     `}
                                   >
@@ -295,7 +315,7 @@ export default function Header() {
                                       className="text-white/20 group-hover/link:text-coral transition-colors shrink-0"
                                     />
                                     <span>{sub.label}</span>
-                                  </a>
+                                  </Link>
                                 ))}
                               </div>
                             </motion.div>
@@ -303,9 +323,7 @@ export default function Header() {
                         </AnimatePresence>
                       </>
                     ) : (
-                      <motion.a
-                        href={link.href}
-                        onClick={closeMobileMenu}
+                      <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
@@ -314,10 +332,16 @@ export default function Header() {
                           delay: i * 0.05,
                           ease: "easeOut",
                         }}
-                        className="font-display font-bold text-3xl text-white hover:text-coral transition-colors py-2 w-full text-left"
+                        className="w-full text-left"
                       >
-                        {link.label}
-                      </motion.a>
+                        <Link
+                          to={link.href}
+                          onClick={closeMobileMenu}
+                          className="font-display font-bold text-3xl text-white hover:text-coral transition-colors py-2 block w-full text-left"
+                        >
+                          {link.label}
+                        </Link>
+                      </motion.div>
                     )}
                   </div>
                 );
@@ -333,13 +357,16 @@ export default function Header() {
                   ease: "easeOut",
                 }}
                 className="mt-8 w-full flex justify-start"
-                onClick={closeMobileMenu}
               >
-                <div className="w-[240px] sm:max-w-[240px]">
+                <Link 
+                  to={content.cta.href} 
+                  onClick={closeMobileMenu} 
+                  className="w-[240px] sm:max-w-[240px] block"
+                >
                   <Button variant="primary" className="w-full justify-center">
                     {content.cta.label}
                   </Button>
-                </div>
+                </Link>
               </motion.div>
             </nav>
           </motion.div>

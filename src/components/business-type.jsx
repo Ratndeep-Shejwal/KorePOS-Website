@@ -16,7 +16,7 @@ const content = {
   headingLine1: "Built for every",
   headingLine2: "hospitality business",
   subtext: "From pop-ups to multi-site groups — one platform adapts to how you operate.",
-  cta: "Learn More",
+  cta: "Explore More",
   fallbackCards: [
     { name: "Restaurants", description: "Full-service POS with kitchen display sync and table management.", image: "https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg" },
     { name: "Boutique", description: "Inventory tracking and checkout built for retail flow.", image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg" },
@@ -149,7 +149,10 @@ export default function BusinessTypes() {
           </p>
 
           <div className="flex items-center gap-6">
-            <Button variant="primary">{content.cta}</Button>
+            {/* CTA Button wrapped in Link pointing to /business-types */}
+            <Link to="/business-types" className="inline-block cursor-pointer">
+              <Button variant="primary">{content.cta}</Button>
+            </Link>
 
             <div className="flex items-center gap-3">
               <button

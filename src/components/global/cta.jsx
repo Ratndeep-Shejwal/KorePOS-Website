@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Button from "../Button";
 
 // ── CONTENT CONFIG ──────────────────────────────
@@ -7,7 +8,8 @@ const content = {
   bgImage: "/images/cta-img.png",
   headingLine1: "Supercharge Your",
   headingLine2: "Business With KorePOS",
-  cta: "Book Demo",
+  primaryCta: "Book Demo",
+  secondaryCta: "View Pricing",
 };
 // ─────────────────────────────────────────────────
 
@@ -43,10 +45,22 @@ export default function CTASection() {
           <span className="block">{content.headingLine2}</span>
         </h2>
 
-        {/* Global Button Component */}
-        <Button variant="primary">
-          {content.cta}
-        </Button>
+        {/* Button Group */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          {/* Contact Page Link */}
+          <Link to="/contact" className="w-full sm:w-auto block">
+            <Button variant="primary">
+              {content.primaryCta}
+            </Button>
+          </Link>
+
+          {/* Homepage Pricing Scroll Anchor */}
+          <a href="#pricing" className="w-full sm:w-auto block">
+            <Button variant="secondary">
+              {content.secondaryCta}
+            </Button>
+          </a>
+        </div>
       </motion.div>
       
     </section>

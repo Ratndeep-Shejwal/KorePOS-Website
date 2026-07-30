@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Button from "../Button";
 
 export default function DynamicHero({ content }) {
@@ -7,7 +8,7 @@ export default function DynamicHero({ content }) {
   return (
     <section className="bg-white pt-40 md:pt-48 w-full flex flex-col items-center font-body overflow-hidden">
       <div className="max-w-4xl mx-auto px-6 flex flex-col items-center text-center z-10 relative">
-        <motion.span 
+        <motion.span
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
@@ -16,7 +17,7 @@ export default function DynamicHero({ content }) {
           {content.overline}
         </motion.span>
 
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
@@ -25,7 +26,7 @@ export default function DynamicHero({ content }) {
           {content.heading}
         </motion.h1>
 
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
@@ -35,7 +36,7 @@ export default function DynamicHero({ content }) {
         </motion.p>
 
         {content.pricing && (
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
@@ -45,18 +46,27 @@ export default function DynamicHero({ content }) {
           </motion.p>
         )}
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
           className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
         >
-          <Button variant="primary">{content.primaryCta}</Button>
-          <Button variant="secondary">{content.secondaryCta}</Button>
+          <Link to="/contact" className="w-full sm:w-auto block">
+            {/* Keeps the dynamic "Book a Demo" / "Talk to Sales" text from your data */}
+            <Button variant="primary">
+              {content.primaryCta || "Book A Demo"}
+            </Button>
+          </Link>
+
+          <a href="#features" className="w-full sm:w-auto block">
+            {/* Hardcoded to "Explore features" so it makes sense with the scroll action */}
+            <Button variant="secondary">Explore features</Button>
+          </a>
         </motion.div>
       </div>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}

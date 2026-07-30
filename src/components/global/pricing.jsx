@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import Button from "../Button";
 
 // ── CONTENT CONFIG ──────────────────────────────
@@ -146,9 +147,11 @@ export default function Pricing() {
                 {/* Custom Plan Button - Uses your global Button component */}
                 {isCustomPlan && (
                   <div className="flex justify-center mb-8">
-                    <Button variant="primary">
-                      {plan.buttonLabel}
-                    </Button>
+                    <Link to="/contact" className="cursor-pointer">
+                      <Button variant="primary" className="cursor-pointer">
+                        {plan.buttonLabel}
+                      </Button>
+                    </Link>
                   </div>
                 )}
 
@@ -174,11 +177,13 @@ export default function Pricing() {
                       {plan.idealFor}
                     </p>
                     <div>
-                      {/* Hardcoded styling to ensure it is visible on the white background */}
-                      <button className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-coral text-coral text-sm font-bold hover:bg-coral/5 transition-colors group">
-                        {plan.buttonLabel}
-                        <ArrowRight size={16} className="text-coral group-hover:translate-x-1 transition-transform" />
-                      </button>
+                      {/* Wrapped in Link with cursor-pointer added */}
+                      <Link to="/contact" className="inline-block cursor-pointer">
+                        <button className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-coral text-coral text-sm font-bold hover:bg-coral/5 transition-colors group cursor-pointer">
+                          {plan.buttonLabel}
+                          <ArrowRight size={16} className="text-coral group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 )}

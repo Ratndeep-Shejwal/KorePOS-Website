@@ -17,12 +17,12 @@ const content = {
   companyLinks: [
     { label: "About Us", href: "/about" },
     { label: "Pricing", href: "/#pricing" },
-    { label: "Contact Us", href: "/#contact" },
-    { label: "Book a Demo", href: "/#book-demo" },
+    { label: "Contact Us", href: "/contact" },
+    { label: "Book a Demo", href: "/contact" },
   ],
   productLinks: [
-    { label: "KorePOS Pro", href: "/korepos-pro" },
     { label: "KorePOS Lite", href: "/korepos-lite" },
+    { label: "KorePOS Pro", href: "/korepos-pro" },
   ],
   // Added Legal Column Links mapping to your new /legal/ routes
   legalColumnLinks: [

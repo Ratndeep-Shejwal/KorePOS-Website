@@ -1,30 +1,35 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 // ── CONTENT CONFIG ──────────────────────────────
 const content = {
   overline: "FAQS",
   headingLine1: "Frequently Asked",
   headingLine2: "Questions",
-  subtext: "Still have questions? Get connected to our support team.",
+  subtext: "Everything you need to know about setting up and running your business on KorePOS.",
   cta: "Contact us",
   faqs: [
     {
-      question: "Can I Get Sample Product?",
-      answer: "Lorem ipsum dolor sit amet consectetur. Est est cras sem porta enim sed enim vitae velit et in elit aenean dui. Consectetur volutpat sit adipiscing enim.",
+      question: "What types of businesses is KorePOS built for?",
+      answer: "KorePOS is incredibly versatile, designed specifically for the modern hospitality and retail sectors. Our platform powers full-service restaurants, quick-service cafes, cloud kitchens, retail boutiques, food trucks, and multi-location franchises.",
     },
     {
-      question: "Where Can I Get Connected to Helio's Team?",
-      answer: "Our support team is available 24/7 through our help center, email, or live chat directly from your KorePOS dashboard.",
+      question: "Do I need to buy specific POS hardware?",
+      answer: "Not necessarily! With KorePOS Lite, you can use 'Tap to Pay' directly on your own smartphone with no extra hardware. For high-volume setups on KorePOS Pro, we offer a range of industry-grade POS terminals, card readers, and kitchen display systems (KDS) tailored to your workflow.",
     },
     {
-      question: "Can I Change Product After Placing My Order?",
-      answer: "Yes, you can modify your hardware order within 24 hours of placement before it is dispatched from our warehouse.",
+      question: "Are there any hidden transaction fees or lock-in contracts?",
+      answer: "We believe in complete transparency. Our standard transaction fee starts at just 1.2% + 0p per transaction with no hidden charges. We also offer rolling monthly plans so you are never locked into a restrictive long-term contract.",
     },
     {
-      question: "How Long The Delivery Take Time?",
-      answer: "Standard delivery takes 3-5 business days. Expedited shipping is available at checkout for 1-2 business day delivery.",
+      question: "How long does the setup and onboarding process take?",
+      answer: "Most businesses are up and running within 24 to 48 hours. Our UK-based support team will guide you through menu migration, payment configuration, and staff training to ensure a seamless launch on day one.",
+    },
+    {
+      question: "Will the POS still work if my internet connection drops?",
+      answer: "Yes. KorePOS includes a robust offline mode that allows you to continue taking orders, managing tables, and processing cash transactions. Once your internet connection is restored, all data automatically syncs to your cloud dashboard.",
     },
   ],
 };
@@ -40,7 +45,7 @@ export default function FAQ() {
 
   return (
     // Outer black wrapper to frame the white box
-    <section className="bg-ink py-12 md:py-24 px-4 md:px-8 overflow-hidden">
+    <section className="bg-ink py-12 md:py-24 px-4 md:px-8 overflow-hidden font-body">
       
       {/* Inner white container */}
       <div className="bg-white mx-auto max-w-[1600px] py-20 md:py-32 px-6 md:px-12 lg:px-24">
@@ -66,10 +71,12 @@ export default function FAQ() {
               {content.subtext}
             </p>
             
-            {/* Custom black rectangular button matching the image */}
-            <button className="bg-black hover:bg-black/80 text-white font-body font-bold text-sm px-10 py-4 transition-colors">
-              {content.cta}
-            </button>
+            {/* Custom black rectangular button matching the image wrapped in Link */}
+            <Link to="/contact">
+              <button className="bg-black cursor-pointer hover:bg-black/80 text-white font-body font-bold text-sm px-10 py-4 transition-colors">
+                {content.cta}
+              </button>
+            </Link>
           </motion.div>
 
           {/* Right Column: Accordion */}

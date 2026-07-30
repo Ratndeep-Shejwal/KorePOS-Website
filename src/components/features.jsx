@@ -65,7 +65,7 @@ const content = {
 
 export default function Features() {
   return (
-    <section className="bg-paper px-4 md:px-8 py-12 relative">
+    <section id="features" className="bg-paper px-4 md:px-8 py-12 relative">
       <div 
         data-theme="dark" 
         className="bg-ink text-paper rounded-[2.5rem] md:rounded-[3rem] py-24 md:py-32 px-6 md:px-12 lg:px-20 mx-auto max-w-[1600px] font-body shadow-2xl relative"

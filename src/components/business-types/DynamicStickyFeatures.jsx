@@ -27,7 +27,7 @@ export default function DynamicStickyFeatures({ content }) {
 
   return (
     // Removed overflow-hidden from the section tag so sticky works
-    <section className="relative bg-[#111111] py-24 md:py-32 px-6 md:px-12 font-body">
+    <section id="features" className="relative bg-[#111111] py-24 md:py-32 px-6 md:px-12 font-body">
       
       {/* ── Ambient Glow Background Container ── */}
       {/* Moved overflow-hidden here so it only clips the background blurs! */}

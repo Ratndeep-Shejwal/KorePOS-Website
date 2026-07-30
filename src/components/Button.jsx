@@ -23,8 +23,8 @@ export default function Button({
       onClick={onClick}
       className={`${base} ${variants[variant]} ${className}`}
     >
-      {/* Text roll-up */}
-      <span className="relative flex items-center h-5 overflow-hidden leading-none">
+      {/* Text roll-up - Added pointer-events-none so it doesn't block the button's cursor */}
+      <span className="relative flex items-center h-5 overflow-hidden leading-none pointer-events-none">
         <span className="flex items-center h-5 transition-transform duration-300 ease-out group-hover:-translate-y-full">
           {children}
         </span>
@@ -33,9 +33,9 @@ export default function Button({
         </span>
       </span>
 
-      {/* Icon roll-up (primary only) */}
+      {/* Icon roll-up (primary only) - Added pointer-events-none */}
       {variant === 'primary' && (
-        <span className="relative flex items-center justify-center w-9 h-9 rounded-full bg-paper text-ink overflow-hidden shrink-0">
+        <span className="relative flex items-center justify-center w-9 h-9 rounded-full bg-paper text-ink overflow-hidden shrink-0 pointer-events-none">
           <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 ease-out group-hover:-translate-y-full">
             <ArrowRight size={18} strokeWidth={2.5} />
           </span>
