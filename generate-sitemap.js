@@ -3,7 +3,6 @@ import { createWriteStream } from 'fs';
 import { resolve } from 'path';
 
 async function generateSitemap() {
-  // Pulls from Vercel's production URL or defaults to your live domain
   const hostname = process.env.VITE_SITE_URL || 'https://www.korepos.co.uk';
 
   const smStream = new SitemapStream({ hostname });
@@ -11,7 +10,7 @@ async function generateSitemap() {
 
   smStream.pipe(writeStream);
 
-  // 1. Static Pages
+  // 1. Always write static pages first so the stream is never empty
   const staticPages = [
     { url: '/', changefreq: 'weekly', priority: 1.0 },
     { url: '/about', changefreq: 'monthly', priority: 0.8 },
@@ -23,7 +22,7 @@ async function generateSitemap() {
 
   staticPages.forEach((page) => smStream.write(page));
 
-  // 2. Dynamic Business Types
+  // 2. Fetch and write dynamic business types safely
   try {
     const response = await fetch('https://pos.getsmotives.com/admin/api/business-types');
     const data = await response.json();
@@ -49,9 +48,10 @@ async function generateSitemap() {
       });
     }
   } catch (error) {
-    console.error('Error fetching dynamic business types for sitemap:', error);
+    console.warn('⚠️ Warning: Could not fetch API during build. Sitemap generated with static pages only.');
   }
 
+  // 3. End the stream properly after everything is written
   smStream.end();
   await streamToPromise(smStream);
   console.log(`✅ Sitemap successfully generated for ${hostname}`);
