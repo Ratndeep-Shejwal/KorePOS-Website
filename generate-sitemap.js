@@ -14,8 +14,9 @@ async function generateSitemap() {
     { url: '/korepos-pro', changefreq: 'monthly', priority: 0.8 },
   ];
 
-  // 2. Fetch dynamic business types safely
+  // 2. Fetch dynamic business types and wait for them to complete
   try {
+    console.log('Fetching dynamic business types for sitemap...');
     const response = await fetch('https://pos.getsmotives.com/admin/api/business-types');
     const data = await response.json();
     const apiData = Array.isArray(data) ? data : data.cards || data.business_types || data.data;
@@ -38,12 +39,13 @@ async function generateSitemap() {
           });
         }
       });
+      console.log(`Successfully added ${apiData.length} dynamic business types to sitemap.`);
     }
   } catch (error) {
-    console.warn('⚠️ Warning: Could not fetch API during build. Sitemap generated with static pages only.');
+    console.warn('⚠️ Warning: Could not fetch API during build:', error);
   }
 
-  // 3. Construct XML manually or via a clean template loop (zero stream dependencies)
+  // 3. Construct XML string
   const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls
@@ -57,9 +59,13 @@ ${urls
   .join('\n')}
 </urlset>`;
 
-  // 4. Write directly using fs
+  // 4. Write to public folder
   writeFileSync(resolve('./public/sitemap.xml'), xmlContent);
-  console.log(`✅ Sitemap successfully generated at ./public/sitemap.xml for ${hostname}`);
+  console.log(`✅ Sitemap successfully generated with ${urls.length} total URLs at ./public/sitemap.xml`);
 }
 
-generateSitemap();
+// Ensure the async function is explicitly executed and awaited
+generateSitemap().catch((err) => {
+  console.error('Fatal error generating sitemap:', err);
+  process.exit(1);
+});

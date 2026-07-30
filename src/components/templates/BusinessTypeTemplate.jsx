@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { businessData } from "../business-types/businessData";
-import { fetchBusinessTypes } from "../utils/api"; // Make sure this path is correct
+import { fetchBusinessTypes } from "../utils/api"; 
 import DynamicHero from "../business-types/DynamicHero";
 import DynamicStickyFeatures from "../business-types/DynamicStickyFeatures"; 
 import PaymentMethods from "../global/payment-methods";
@@ -12,10 +12,8 @@ import DynamicFAQ from "../business-types/DynamicFaq";
 
 // Smart Matcher: Connects dynamic API slugs to your static FAQ/Features dictionary
 const getStaticData = (slug) => {
-  // 1. Check for an exact match first
   if (businessData[slug]) return businessData[slug];
 
-  // 2. Keyword fuzzy matching for common variations
   const text = String(slug).toLowerCase();
   if (text.includes("cafe") || text.includes("coffee")) return businessData["cafes-and-coffee-shops"];
   if (text.includes("baker") || text.includes("sweet")) return businessData["bakeries-and-sweet-shops"];
@@ -38,7 +36,6 @@ const getStaticData = (slug) => {
   if (text.includes("tour")) return businessData["tour-operators"];
   if (text.includes("workshop") || text.includes("class")) return businessData["workshops-and-classes"];
 
-  // 3. If no keywords match, fall back to the "others" template
   return businessData["others"];
 };
 
@@ -46,21 +43,29 @@ export default function BusinessTypeTemplate() {
   const { slug } = useParams();
   const normalizedSlug = String(slug || "").toLowerCase().trim();
 
-  // Initialize with the best matching static data (FAQs, Features, Pricing)
+  // 1. Compute initial static data immediately based on the current slug
   const [pageData, setPageData] = useState(() => getStaticData(normalizedSlug));
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // Fetch live API data to override the Hero section dynamically
+    // 2. Immediately update base static data when `normalizedSlug` changes
+    const baseData = getStaticData(normalizedSlug);
+    setPageData(baseData);
+
+    // 3. Fetch live API data to override the Hero section dynamically
     fetchBusinessTypes().then((apiItems) => {
       if (apiItems && apiItems.length > 0) {
-        const matchedApiItem = apiItems.find((item) => item.slug === normalizedSlug);
+        const matchedApiItem = apiItems.find((item) => {
+          const itemSlug = String(item.slug || item.name || "").toLowerCase().trim()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)/g, "");
+          return itemSlug === normalizedSlug;
+        });
         
         if (matchedApiItem) {
           setPageData((prevData) => ({
             ...prevData,
-            // Override static data with live API data
             heading: matchedApiItem.name,
             subtext: matchedApiItem.description,
             heroImage: matchedApiItem.image,
@@ -69,7 +74,7 @@ export default function BusinessTypeTemplate() {
         }
       }
     });
-  }, [normalizedSlug]);
+  }, [normalizedSlug]); // <--- CRITICAL: Triggers every time the slug updates!
 
   if (!pageData) {
     return (
