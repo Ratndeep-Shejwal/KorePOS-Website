@@ -1,17 +1,11 @@
-import { SitemapStream, streamToPromise } from 'sitemap';
-import { createWriteStream } from 'fs';
+import { writeFileSync } from 'fs';
 import { resolve } from 'path';
 
 async function generateSitemap() {
   const hostname = process.env.VITE_SITE_URL || 'https://www.korepos.co.uk';
 
-  const smStream = new SitemapStream({ hostname });
-  const writeStream = createWriteStream(resolve('./public/sitemap.xml'));
-
-  smStream.pipe(writeStream);
-
-  // 1. Always write static pages first so the stream is never empty
-  const staticPages = [
+  // 1. Static Pages
+  const urls = [
     { url: '/', changefreq: 'weekly', priority: 1.0 },
     { url: '/about', changefreq: 'monthly', priority: 0.8 },
     { url: '/contact', changefreq: 'monthly', priority: 0.9 },
@@ -20,9 +14,7 @@ async function generateSitemap() {
     { url: '/korepos-pro', changefreq: 'monthly', priority: 0.8 },
   ];
 
-  staticPages.forEach((page) => smStream.write(page));
-
-  // 2. Fetch and write dynamic business types safely
+  // 2. Fetch dynamic business types safely
   try {
     const response = await fetch('https://pos.getsmotives.com/admin/api/business-types');
     const data = await response.json();
@@ -39,7 +31,7 @@ async function generateSitemap() {
           .replace(/(^-|-$)/g, '');
 
         if (slug) {
-          smStream.write({
+          urls.push({
             url: `/business-types/${slug}`,
             changefreq: 'weekly',
             priority: 0.7,
@@ -51,10 +43,23 @@ async function generateSitemap() {
     console.warn('⚠️ Warning: Could not fetch API during build. Sitemap generated with static pages only.');
   }
 
-  // 3. End the stream properly after everything is written
-  smStream.end();
-  await streamToPromise(smStream);
-  console.log(`✅ Sitemap successfully generated for ${hostname}`);
+  // 3. Construct XML manually or via a clean template loop (zero stream dependencies)
+  const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls
+  .map(
+    (item) => `  <url>
+    <loc>${hostname}${item.url}</loc>
+    <changefreq>${item.changefreq}</changefreq>
+    <priority>${item.priority}</priority>
+  </url>`
+  )
+  .join('\n')}
+</urlset>`;
+
+  // 4. Write directly using fs
+  writeFileSync(resolve('./public/sitemap.xml'), xmlContent);
+  console.log(`✅ Sitemap successfully generated at ./public/sitemap.xml for ${hostname}`);
 }
 
 generateSitemap();
