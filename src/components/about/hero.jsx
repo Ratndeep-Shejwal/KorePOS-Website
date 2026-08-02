@@ -71,7 +71,7 @@ export default function AboutHero() {
           className="w-full aspect-[4/3] md:aspect-[21/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden relative shadow-2xl"
         >
           <motion.img
-            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=2000"
+            src="/images/about-hero.png"
             alt="KorePOS hardware and software in use across various businesses"
             className="absolute inset-0 w-full h-full object-cover origin-center"
           />

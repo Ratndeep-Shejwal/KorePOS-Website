@@ -8,8 +8,7 @@ const content = {
     "We believed merchants deserved something better. Instead of juggling multiple platforms, expensive integrations, hidden fees, and outdated software, we built one modern operating system designed specifically for how businesses operate today.",
     "KorePOS helps businesses simplify operations, accept payments seamlessly, manage bookings, track performance in real time, and grow revenue — all from a single connected platform."
   ],
-  // Placeholder image matching the vibe of your screenshot
-  image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=1200", 
+  image: "/images/our-story.png", 
 };
 
 // Animation variants for staggered text reveal
