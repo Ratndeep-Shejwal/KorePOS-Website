@@ -2,48 +2,48 @@ import { motion } from "framer-motion";
 
 // ── CONTENT CONFIG ──────────────────────────────
 const content = {
-  overline: "WHY KOREPOS",
-  heading: "Everything's Built In, From Day One.",
+  overline: "THE DIFFERENCE",
+  heading: "Nothing's locked behind an upgrade",
   benefits: [
     {
       id: "01",
-      title: "24/7 Support",
-      description: "Round-The-Clock Human Help, Included As Standard.",
+      title: "Support When You Need It",
+      description: "Real humans, day or night, whenever something goes wrong.",
     },
     {
       id: "02",
-      title: "Free Updates",
-      description: "New Features Ship Automatically, At No Extra Cost.",
+      title: "Improvements, Automatically",
+      description: "New features roll out to your account - no re-installs, no fees.",
     },
     {
       id: "03",
-      title: "Works Offline",
-      description: "Keep Selling Even If The Connection Drops.",
+      title: "Never Miss a Sale",
+      description: "Keep taking orders and payments even when your connection drops.",
     },
     {
       id: "04",
-      title: "One Dashboard",
-      description: "Run Every Channel And Site From A Single Login.",
+      title: "Everything in One Place",
+      description: "One login covers every till, site, and sales channel you run.",
     },
     {
       id: "05",
-      title: "Bank-Grade Security",
-      description: "PCI-DSS Compliant And End-To-End Encrypted.",
+      title: "Security You Don't Think About",
+      description: "PCI-DSS compliant, fully encrypted, built to protect every transaction.",
     },
     {
       id: "06",
-      title: "Scales With You",
-      description: "From One Location To Many. No Re-Platforming.",
+      title: "Room to Grow",
+      description: "Add sites, staff, and tills without switching systems later.",
     },
     {
       id: "07",
-      title: "Open Integrations",
-      description: "Connect Accounting, Delivery And Loyalty Tools.",
+      title: "Plays Well With Others",
+      description: "Connect the accounting, delivery, and marketing tools you already use.",
     },
     {
       id: "08",
-      title: "Transparent Pricing",
-      description: "One Clear Rate — No Hidden Fees, Ever.",
+      title: "One Rate, No Surprises",
+      description: "What you're quoted is what you pay - nothing buried in the small print.",
     },
   ],
 };

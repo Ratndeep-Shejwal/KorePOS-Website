@@ -1,63 +1,114 @@
 import { motion } from "framer-motion";
 
 const content = {
-  overline: "FEATURES",
-  heading: "See how KorePOS runs your day",
+  overline: "HOW IT WORKS",
+  heading: "A tour of your new day-to-day",
+  subheading:
+    "From the first coffee order to the last table turn - here's what changes when everything runs on one system.",
   features: [
     {
       id: "01",
-      title: "Payments that feel invisible",
-      desc1: "Tap to Pay. Integrated terminals. Zero payment friction - instant settlement with transparent fees.",
-      desc2: "Guests pay without friction while you see every transaction, receipt, and settlement in one overview. No hidden markups - just infrastructure you can trust at the counter and on the move.",
-      tags: ["Tap to Pay on iPhone", "Card terminals & QPOS", "Payment links & invoices", "Instant settlements"],
+      title: "Get paid without the friction",
+      desc1:
+        "Every way your customers want to pay, working the moment you switch it on.",
+      desc2:
+        "Accept tap, chip, contactless and digital wallets straight from your phone or terminal. Funds settle fast, fees stay transparent, and every transaction is logged automatically - no manual reconciling at close.",
+      tags: [
+        "Tap to Pay on any phone",
+        "Terminal & card machine support",
+        "Payment links for remote orders",
+        "Same-day settlement visibility",
+      ],
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=1000",
     },
     {
       id: "02",
-      title: "Restaurant operations, orchestrated",
-      desc1: "Tables, courses, and sent tickets choreographed to the pace of service - live.",
-      desc2: "Hold plates, course, and fire items right from the floor or till. It's a second nature workflow so your Front of House never drops a ball - no matter how packed the dining room gets.",
-      tags: ["Table management", "Course & fire items", "Split & transfer bills", "Open tabs & bar views"],
+      title: "Turn tables faster, not harder",
+      desc1:
+        "A floor plan that tells you exactly what's happening, table by table.",
+      desc2:
+        "See who's seated, who's ordering, and who's ready to pay - all without walking the floor. Orders sync straight to the kitchen the moment they're placed, so nothing gets lost between the till and the pass.",
+      tags: [
+        "Live floor plan",
+        "Dine-in, takeaway & delivery in one flow",
+        "Split bills & merge tables",
+        "Zero double-entry",
+      ],
       image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=1000",
     },
     {
       id: "03",
-      title: "Kitchen systems in sync",
-      desc1: "Kitchen Display routes tickets with clarity - no shouting, no missed orders.",
-      desc2: "Tickets land on grill, fry, or pass with fire times and allergy notes visible at a glance. Bump rows when they're ready and keep the floor aligned with what's on the pass.",
-      tags: ["Custom routing", "Prep & fire times", "Clear ticket status", "Allergy & note callouts"],
+      title: "Kitchens that never fall behind",
+      desc1:
+        "Digital tickets that keep every station moving in the same direction.",
+      desc2:
+        "Orders route straight to grill, fry, or pass with prep times and allergy flags built in. Chefs bump tickets as they fire, so front-of-house always knows what's coming next - no printed dockets, no guesswork.",
+      tags: [
+        "Automatic station routing",
+        "Built-in allergen alerts",
+        "Real-time ticket timers",
+        "No paper tickets",
+      ],
       image: "https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?auto=format&fit=crop&q=80&w=1000",
     },
     {
       id: "04",
-      title: "Analytics you can act on",
-      desc1: "Real-time labour, and revenue performance drawn down from cloud headquarters.",
-      desc2: "See what sold, what needs a discount, and how labour tracked against sales - minute by minute in spreadsheet scale. Do your end-of-day in 15 minutes, not an hour.",
-      tags: ["Daily revenue sync", "Live sales tracking", "Labour vs Sales", "Multi-site rollups"],
+      title: "Numbers that actually tell you something",
+      desc1:
+        "Stop guessing what's working. See it, in real time.",
+      desc2:
+        "Track best-selling items, peak trading hours, and staff performance in one dashboard - updated live, not overnight. Spot what to push, what to cut, and where your margin is leaking, without opening a spreadsheet.",
+      tags: [
+        "Live sales dashboard",
+        "Best & worst sellers",
+        "Labour cost vs revenue",
+        "Reports across every site",
+      ],
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
     },
     {
       id: "05",
-      title: "Staff workflows, simplified",
-      desc1: "Roles, shifts, and permissions that scale as your team grows.",
-      desc2: "Give servers, kitchen, and managers the access they need - with PIN protection for refunds, discounts, and sensitive actions. Shift visibility keeps handovers smooth.",
-      tags: ["Role-based access", "Shift visibility", "PIN protected actions", "Audit-friendly trails"],
+      title: "A team that runs itself",
+      desc1:
+        "Give every team member exactly the access they need - no more, no less.",
+      desc2:
+        "Set roles for servers, chefs, and managers with PIN-locked permissions for discounts, voids, and refunds. Shift changes and handovers stay clean, with a full audit trail if you ever need to check back.",
+      tags: [
+        "Role-based staff access",
+        "PIN-protected actions",
+        "Shift & clock-in tracking",
+        "Full audit history",
+      ],
       image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1000",
     },
     {
       id: "06",
-      title: "Mobile POS anywhere",
-      desc1: "Take orders and take payments with the same operating system.",
-      desc2: "The same menu, modifiers, and pricing rules follow your team wherever they take orders. Skip the till, ring the rush - whether you're on the floor or at a pop-up.",
-      tags: ["Line busting ready", "Offline support", "Same menu as main till", "Pop-ups & events"],
+      title: "Take the till anywhere",
+      desc1:
+        "Your whole system, not a stripped-down version of it, in your pocket.",
+      desc2:
+        "Take orders tableside, at a market stall, or queueing out the door - with the exact same menu, prices, and modifiers as your main counter. Keep selling even if the Wi-Fi drops.",
+      tags: [
+        "Full tableside ordering",
+        "Works without internet",
+        "One menu, every device",
+        "Built for markets & events",
+      ],
       image: "https://images.unsplash.com/photo-1580828369019-2238f6982885?auto=format&fit=crop&q=80&w=1000",
     },
     {
       id: "07",
-      title: "QR ordering, elevated",
-      desc1: "Guests order at their pace - you stay in control of the experience.",
-      desc2: "Scan-to-order menus reduce queue pressure while you can approve rules and route orders to the kitchen. Pay-at-table keeps the till un-tied with dine in service.",
-      tags: ["Custom menus", "Pay at table", "Approve before tickets", "Cross-sell in rules"],
+      title: "Let customers order their way",
+      desc1:
+        "Fewer staff running orders, more staff delivering great service.",
+      desc2:
+        "Guests scan a code, browse your live menu, and order straight from their table - no app download required. You control what gets auto-approved and what needs a nod from staff.",
+      tags: [
+        "Scan-to-order from any table",
+        "Pay before food arrives",
+        "Custom approval rules",
+        "Fewer queues at peak",
+      ],
       image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=1000",
     },
   ],

@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 const content = {
   graphicImage: "images/hero-img.png",
   badge: "Pay as Little as 0.39% per Transaction*",
-  headingLine1: "Run your entire business",
-  headingLine2: "on one system",
+  headingLine1: "Every tool your business needs.",
+  headingLine2: "One system to run it.",
   subtext:
-    "POS, Payments, Bookings, QR Ordering, Kitchen Displays and Analytics — all in one operating system.",
-  primaryCta: "Book Demo",
+    "KorePOS brings your till, payments, table bookings, kitchen screens and sales reports into a single dashboard - so you spend less time switching apps and more time serving customers.",
+  primaryCta: "Book a Free Demo",
   secondaryCta: "Explore Features",
 };
 

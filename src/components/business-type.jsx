@@ -13,10 +13,10 @@ const createSlug = (str) =>
     .replace(/(^-|-$)/g, "");
 
 const content = {
-  headingLine1: "Built for every",
-  headingLine2: "hospitality business",
-  subtext: "From pop-ups to multi-site groups — one platform adapts to how you operate.",
-  cta: "Explore More",
+  headingLine1: "Any business, any size,",
+  headingLine2: "built to fit the way you run your business",
+  subtext: "Whether you're pulling espresso shots or plating tasting menus, KorePOS adapts to your workflow - not the other way round.",
+  cta: "See All Business Types",
   fallbackCards: [
     { name: "Restaurants", description: "Full-service POS with kitchen display sync and table management.", image: "https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg" },
     { name: "Boutique", description: "Inventory tracking and checkout built for retail flow.", image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg" },

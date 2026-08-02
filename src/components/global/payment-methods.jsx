@@ -2,7 +2,7 @@ import { PaymentIcon } from 'react-svg-credit-card-payment-icons'
 
 // ── CONTENT CONFIG ──────────────────────────────
 const content = {
-  heading: 'Accepted Payment Methods',
+  heading: 'Take payment however your customers want to pay',
   icons: [
     'Visa',
     'Mastercard',

@@ -12,24 +12,24 @@ const content = {
   cta: "Contact us",
   faqs: [
     {
-      question: "What types of businesses is KorePOS built for?",
-      answer: "KorePOS is incredibly versatile, designed specifically for the modern hospitality and retail sectors. Our platform powers full-service restaurants, quick-service cafes, cloud kitchens, retail boutiques, food trucks, and multi-location franchises.",
+      question: "Can I try KorePOS before I buy?",
+      answer: "Yes. Book a free demo and we'll show you the system running on your own menu and workflow, with no commitment.",
     },
     {
-      question: "Do I need to buy specific POS hardware?",
-      answer: "Not necessarily! With KorePOS Lite, you can use 'Tap to Pay' directly on your own smartphone with no extra hardware. For high-volume setups on KorePOS Pro, we offer a range of industry-grade POS terminals, card readers, and kitchen display systems (KDS) tailored to your workflow.",
+      question: "How fast do I get paid?",
+      answer: "Most transactions settle into your account within 1-2 business days, with live settlement status shown in your dashboard.",
     },
     {
-      question: "Are there any hidden transaction fees or lock-in contracts?",
-      answer: "We believe in complete transparency. Our standard transaction fee starts at just 1.2% + 0p per transaction with no hidden charges. We also offer rolling monthly plans so you are never locked into a restrictive long-term contract.",
+      question: "Does KorePOS work for my type of business?",
+      answer: "KorePOS supports restaurants, cafés, retail shops, food trucks, salons, and 20+ other business types across the UK — single site or multi-branch.",
     },
     {
-      question: "How long does the setup and onboarding process take?",
-      answer: "Most businesses are up and running within 24 to 48 hours. Our UK-based support team will guide you through menu migration, payment configuration, and staff training to ensure a seamless launch on day one.",
+      question: "Can I switch between Lite and Pro?",
+      answer: "Yes, upgrade or downgrade whenever your business needs change — there's no lock-in contract.",
     },
     {
-      question: "Will the POS still work if my internet connection drops?",
-      answer: "Yes. KorePOS includes a robust offline mode that allows you to continue taking orders, managing tables, and processing cash transactions. Once your internet connection is restored, all data automatically syncs to your cloud dashboard.",
+      question: "Is there a setup or hardware fee?",
+      answer: "Lite requires no hardware at all — just your phone. Pro hardware can be purchased or leased, with full pricing shown before you commit.",
     },
   ],
 };
